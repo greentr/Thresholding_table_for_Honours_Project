@@ -1,32 +1,31 @@
-# Filtering-Script
-README:
-Variant filtering and metric producing script for UNDR ROVER VCF files by Thomas Green for 2017 Honours project.
-Made to work with multiple VCFs produced from UNDR ROVER after a sequencing run using a cell line DNA
+Sens_PPV_table README
 
-Required to use:
-	Files from github:
-		folder named: TP-FP-outputs
-		add_sample_count.py made by Khalid Mahmood
-		filt.sh
-		Sens_PPV.py
-		Blank text file named: Sens_PPV-statistics.txt
-	Python 2.7
-	Python tools:
-		cyvcf2
-		pybedtools
-		pysam
-	Command line tools:
-		vt
-	VCF file containing truth set named TRUTHSET.vcf
-	Folder containing VCFs
+This is a python script for creating a tsv table listing the sensitivity and positive predictive values resulting from different levels of filtering for depth and proportion thresholds using sample DNA and vcfs created from UNDR ROVER.
 
-To run:
-	Use command in terminal:
-		bash filt.sh <name of folder with VCFs> <min read pairs depth> <min % of read pairs variant appears in>
+Usage:
+python Sens_PPV_table.py -c <folder containing sample vcfs> -t <link to vcf containing known true variants>
 
-Produces: 
-	Folder within VCF folder that contains VCFs filtered for read pairs and percentage
-	VCF files in folder 'TP-FP-outputs' that list true positives and false positives that appear with a sample count of how many samples they appear in
-	Information in the text file 'Sens_PPV-statistics.txt' detailing the sensitivity and positive predictive value with the given conditions
+Output:
+Folders within condition folder for each filtering condition
+Filtered vcfs within above folders
+tsv file containing a tabulated list of sensitivities and positive predictive values for all filtering conditions
 
-# Filtering-Script
+Currently 242 filtering conditions are used.
+Depth thresholds of 0 to 50 with intervals of 5, 50 to 100 with intervals of 10 and 100 to 400 with intervals of 50.
+Proportion thresholds of 0 to 50 with intervals of 5
+This can be altered by changing the numpy aranges in the python script
+Looks like:
+pct_options = numpy.arange(0, 51, 5)
+np1 = numpy.arange(0, 50, 5)
+np2 = numpy.arange(50, 100, 10)
+np3 = numpy.arange(100, 401, 50)
+np_options = numpy.concatenate((np1, np2, np3))
+
+pct is proportion threshold
+np is depth threshold
+
+Python 2.7 modules used:
+cyvcf2 0.7.2
+numpy 1.13.1
+pybedtools 0.7.10
+pysam 0.9.0
