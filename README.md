@@ -50,5 +50,3 @@ Python 2.7 modules used:
 	numpy 1.13.1
 
 	pybedtools 0.7.10
-
-	pysam 0.9.0
