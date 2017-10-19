@@ -1,3 +1,6 @@
+This python script was written by Thomas Green for an Honours project
+
+
 Sens_PPV_table README
 
 This is a python script for creating a tsv table listing the sensitivity and positive predictive values resulting from different levels of filtering for depth and proportion thresholds using sample DNA and vcfs created from UNDR ROVER.
