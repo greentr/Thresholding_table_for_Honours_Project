@@ -1,3 +1,5 @@
+# Written by Thomas Green for the purposes of use in an Honours project
+
 import sys
 import os
 import argparse
